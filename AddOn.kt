@@ -1,9 +1,7 @@
 package com.example.simpill.ext
 
 import android.app.Activity
-import android.content.Context
 import android.widget.Button
-import com.example.simpill.R
 
 /**
  * To feed into python script, add around every function that is called from external repository.

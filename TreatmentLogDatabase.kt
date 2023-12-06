@@ -9,7 +9,7 @@ import androidx.core.content.contentValuesOf
 val DATABASE_NAME = "treatment_log"
 
 class TreatmentLogDatabase(context: Context, factory: SQLiteDatabase.CursorFactory?) :
-        SQLiteOpenHelper(context, "treatment_log", factory, 0)  {
+        SQLiteOpenHelper(context, "treatment_log", factory, 1)  {
 
     val TABLE_NAME = DATABASE_NAME + "_table"
 
