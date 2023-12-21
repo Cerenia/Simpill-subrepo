@@ -21,6 +21,8 @@ open class AddOn {
         @JvmStatic fun openTreatmentLogActivity() : Unit {
 
         }
+        
+        // Random comment for testing purposes
     }
 }
 
