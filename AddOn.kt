@@ -2,6 +2,8 @@ package com.example.simpill.ext
 
 import android.app.Activity
 import android.widget.Button
+import com.example.simpill.DatabaseHelper
+import com.example.simpill.treatmentLog.TreatmentLogDatabase
 
 /**
  * To feed into python script, add around every function that is called from external repository.
@@ -20,6 +22,12 @@ open class AddOn {
 
         @JvmStatic fun openTreatmentLogActivity() : Unit {
 
+        }
+
+
+        @JvmStatic fun populateDatabases(tdb: TreatmentLogDatabase, pillDb: DatabaseHelper): Unit {
+            pillDb.populateWithDummies()
+            tdb.populateWithDummies(pillDb.allPills)
         }
 
         // Random comment for testing purposes
