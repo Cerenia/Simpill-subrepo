@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.core.content.ContextCompat.startActivity
 import com.example.simpill.DatabaseHelper
 import com.example.simpill.ext.treatmentLog.TreatmentLogActivity
-import com.example.simpill.ext.treatmentLog.TreatmentLogDatabase
+import com.example.simpill.ext.treatmentLog.TreatmentLogDatabaseHelper
 
 /**
  * To feed into python script, add around every function that is called from external repository.
@@ -28,7 +28,7 @@ open class AddOn {
         }
 
 
-        @JvmStatic fun populateDatabases(tdb: TreatmentLogDatabase, pillDb: DatabaseHelper): Unit {
+        @JvmStatic fun populateDatabases(tdb: TreatmentLogDatabaseHelper, pillDb: DatabaseHelper): Unit {
             pillDb.populateWithDummies()
             tdb.populateWithDummies(pillDb.allPills)
         }

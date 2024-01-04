@@ -1,6 +1,5 @@
 package com.example.simpill.ext.treatmentLog
 
-import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
@@ -10,8 +9,26 @@ import com.example.simpill.Pill
 
 val DATABASE_NAME = "treatment_log"
 
-class TreatmentLogDatabase(context: Context, factory: SQLiteDatabase.CursorFactory?) :
-        SQLiteOpenHelper(context, "treatment_log", factory, 1)  {
+class TreatmentLogDatabaseHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
+        SQLiteOpenHelper(context, "treatment_log", null, 1)  {
+
+    companion object Factory {
+        // Singleton Instance, hacking stuff together for test repo
+        lateinit var tldb: TreatmentLogDatabaseHelper
+        private var isInitialized: Boolean = false
+
+        open fun getDatabase(context: Context): TreatmentLogDatabaseHelper{
+            // TODO: Do I really need this? May just have to call "getWritableDatabase in my methods instead"
+            // Hm.. Am doing that though
+            if(!isInitialized){
+                tldb = TreatmentLogDatabaseHelper(context, null)
+                tldb.writableDatabase
+                isInitialized = true
+            }
+            return tldb
+        }
+    }
+
 
     val TABLE_NAME = DATABASE_NAME + "_table"
 

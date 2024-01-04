@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simpill.R;
@@ -13,7 +14,6 @@ import com.example.simpill.Simpill;
 
 public class TreatmentLogActivity extends AppCompatActivity {
 
-    private final TreatmentLogDatabase db = new TreatmentLogDatabase(this, null);
     private RecyclerView logs;
     private TextView title;
     private final SharedPrefs sharedPrefs = new SharedPrefs(this);
@@ -44,7 +44,8 @@ public class TreatmentLogActivity extends AppCompatActivity {
 
     private void initializeTreatmentLog(){
         // Usually this would not happen on the UI thread. Keeping in simple for test repo.
-        Adapter a = new Adapter(db.getAllEntries().getList());
+        Adapter a = new Adapter(TreatmentLogDatabaseHelper.Factory.getDatabase(this).getAllEntries().getList());
+        logs.setLayoutManager(new LinearLayoutManager(this));
         logs.setAdapter(a);
     }
 
