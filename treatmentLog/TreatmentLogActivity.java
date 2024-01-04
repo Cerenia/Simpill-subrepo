@@ -25,7 +25,10 @@ public class TreatmentLogActivity extends AppCompatActivity {
     }
 
     private void initializeTreatmentLog(){
-
+        RecyclerView rw = findViewById(R.id.log);
+        // Usually this would not happen on the UI thread. Keeping in simple for test repo.
+        Adapter a = new Adapter(db.getAllEntries().getList());
+        rw.setAdapter(a);
     }
 
     public void randomMethod(){
